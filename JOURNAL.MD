@@ -70,3 +70,87 @@ For the Groundstation side, I'll just use a LB-LINK BL-R8812AF1 board on a custo
 This is based on the RTL8812AU, an old chip that's time tested.
 
 time spent: 4 hours
+
+# July 22'nd
+Good afternoon, let's just make a block diagram of the GS side to see how things would be placed and interact.
+
+#### Component functions:
+- antenna: to recieve the signals from the UAV transmitter
+- BL-R8812AF1: capable network module
+- custom board: to hold everything together and power the network module from OTG Power
+- Mobile device, the decoding device and monitor
+
+#### Technical Implementation
+- the antennas would be one 13 dbi gain omni antenna and one panel antenna of 23 dBi, both connected to the RTL2AU module
+- Decoding, it'll use PixelPilot OSS proj. for H264 decoding
+- It'll be powered by the phone power, the power demand shouldn't be that much because the module would mostly be RX only.
+
+#### PCB specific
+- the pcb will power the the chip from the phone with the USB OTG power and DC step down
+- ESD protection on the Data lines
+- led status
+- USB C connection
+
+
+done! it took a bit but it's done! (ground side custom pcb done)
+
+![](./images/groundside.png)
+
+time spent: ~7 hour
+
+# July 23rd
+time for the airside PCB
+
+ ### technicals:
+ - it should power both the camera and the wifi module
+ - it should have the connectors for both
+ - house heatsink for the module
+ - house fan for the module heatsink
+
+![](./images/airside.png)
+
+time spent: ~7 hour
+
+
+# July 24'th
+
+Let's check through the current system, how it'll function. We're almost done, this is just a final check to make sure our systems aren't flawed by design choices we made.
+
+### System Overview
+
+**Airside (UAV):**
+- Camera module (SSC338Q + IMX415) -> streams H.264
+- WiFi module (RTL8812EU)
+- Custom PCB:
+  - Powers camera and WiFi module (via step-down converter from LiPo)
+  - Hosts connectors and thermal management (fan + heatsink)
+  - Provides stable 5V rail, ESD protection, and decoupling
+
+**Groundside (GS):**
+- USB WiFi module (RTL8812AU) in monitor mode
+- Connected to mobile device via OTG
+- Custom PCB:
+  - Distributes OTG power
+  - Antenna connections: 13 dBi omni + 23 dBi panel
+- Mobile App: PixelPilot for stream decoding
+
+### Link Budget Estimate (5 GHz, Open Air)
+
+- TX Power (Air): 29 dBm
+- TX Antennas: 2x 5 dBi
+- RX Antennas: 13 dBi + 23 dBi
+- Free Space Path Loss at 5 km (5.8 GHz): ~114 dB
+- Expected RX Signal: ~ -43 to -55 dBm
+- Sensitivity (RTL8812AU at MCS7): ~ -70 dBm
+
+Result: Link should remain stable under clear LOS conditions.
+
+
+## What remains?
+
+### DVR
+- plans: 
+	- so current plan is to add a usb hub typa PCB to the USB terminals of the camera module which'd extend the USB connection to both wifi module and SD card adaptor.
+
+
+
