@@ -3,6 +3,8 @@ OpenFPV is a DIY digital FPV system for UAVs that leverages low-cost IP camera m
 
 ![airpcb](images/airside.png)
 ![gspcb](images/groundside.png)
+![airpcb](images/airside_sch.png)
+![gspcb](images/groundside_sch.png)
 
 
 # Made for the following camera module
