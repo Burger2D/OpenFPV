@@ -3,6 +3,7 @@ title: "OpenEyePC"
 author: "Burger"
 description: "OpenIPC cameras for UAVs"
 created_at: "2025-07-20"
+time spent: "~30 hours"
 ---
 
 
