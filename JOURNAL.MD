@@ -62,13 +62,13 @@ I read through the spec sheet for the SSC338Q chip and it's kinda awesome, it ca
 
 For the lens, it'll use a 3.6 mm lens, which I feel would be ok for this purpose.
 
-For the Airside tx, I am thinking of using a this BL-M8812EU2 from LB Link, which is based on the RTL8812EU module, it's a great module because it supports upto 29 dBm of output power while being very cheap (~$10)
+For the Airside tx, I am thinking of using this BL-M8812EU2 from LB Link, which is based on the RTL8812EU module, it's a great module because it supports upto 29 dBm of output power while being very cheap (~$10)
 ![](https://ae-pic-a1.aliexpress-media.com/kf/S2b2c990a7166492caf2a3e1a06e23abfY.jpg_960x960q75.jpg_.avif)
 I'd need to make a custom PCB to house this board and all the components that'll be required to power it (and the camera). Will probably add a heatsink to cool it down.
 
 For the Groundstation side, I'll just use a LB-LINK BL-R8812AF1 board on a custom pcb to connect with a phone to interface with Pixelpilot. Also reletively cheap at around ~$10
 ![image](https://raw.githubusercontent.com/OpenIPC/docs/refs/heads/main/src/assets/images/bl-r8812af1-top.png)
-This is based on the RTL8812AU, an old chip that's time tested.
+This is based on the RTL8812AU, an old chip that's time-tested.
 
 time spent: 4 hours
 
@@ -76,7 +76,7 @@ time spent: 4 hours
 Good afternoon, let's just make a block diagram of the GS side to see how things would be placed and interact.
 
 #### Component functions:
-- antenna: to recieve the signals from the UAV transmitter
+- antenna: to receive the signals from the UAV transmitter
 - BL-R8812AF1: capable network module
 - custom board: to hold everything together and power the network module from OTG Power
 - Mobile device, the decoding device and monitor
@@ -95,6 +95,9 @@ Good afternoon, let's just make a block diagram of the GS side to see how things
 
 done! it took a bit but it's done! (ground side custom pcb done)
 
+added post facto
+this was a fun one, i love usb c. the direct connection was quite nice, added some protection from surges for just in case, and used PD to power the chip so it can recieve in peace. Some mounting holes for future use.
+
 ![](./images/groundside.png)
 
 time spent: ~7 hour
@@ -107,6 +110,9 @@ time for the airside PCB
  - it should have the connectors for both
  - house heatsink for the module
  - house fan for the module heatsink
+
+added post facto
+so this PCB contains a few caps, a few resistors, a few connectors and power supply for the camera module. It is a square shaped PCB with titled hole to mount the heat sink for the LB link module. I got the idea from the Eachine module. It contains a few buck converters to get the correct voltage. While I don't worry much about this, the connectors are rated till 1 A, a bit low for my liking, though I don't think we'll pass that in normal conditions. It has a ton of capacitors carefully sprinkled over. It has mounting holes as per documents i found for the camera module to be mounted directly to it.
 
 ![](./images/airside.png)
 
