@@ -1,6 +1,15 @@
 # OpenFPV
 OpenFPV is a DIY digital FPV system for UAVs that leverages low-cost IP camera modules running custom OpenIPC firmware, paired with high-power WiFi adapters to stream video over long distances on the 5 GHz ISM band. This project aims to build a semi-long-range (up to ~5 km) FPV system that's modular, affordable, and hackable.
 
+> ### In a nutshell
+> So this is a system for cheap-ish cameras intended to be used for surveillance to be modded with some extra firmware and carrier boards to transmit long-ish (with other hardware like antennas and stuff) distances.
+> I was initially going with making the digital FPV systems cheaper since most of those are mainly manufactured by DJI and the likes and sold at much higher costs.
+
+> The current components of the project (in the repo), the board for the camera and receiver, should be all one would need to use the system (other than the obvious, the camera board and batteries and stuff). The camera would transmit via the boards, and the system connected at the other end would receive it via the receiver board over plain ol' wifi! all under the ISM bands! With some error correcting and bitrate correction stuff, one can get loooong ranges with it, wfg-ng is the radio link for this.
+you could achieve a good range with cheap-ish antennas, and get the radio link to connect at quite a distance if it's in line of sight.
+
+
+
 ![airpcb](images/airside.png)
 ![gspcb](images/groundside.png)
 ![airpcb](images/airside_sch.png)
